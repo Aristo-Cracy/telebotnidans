@@ -28,7 +28,7 @@ async def handle_nid(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("⏳ Fetching data...")
     try:
         q_meta = requests.get(f"https://learn.aakashitutor.com/api/getquestionsforquiz?nid={nid}&noredirect=true").json()
-        q_url = q_meta["url"].replace("\u0026", "&").replace("\", "")
+        q_url = q_meta["url"].replace("\\u0026", "&").replace("\\", "")
         questions = requests.get(q_url).json()
         sols = requests.get(f"https://learn.aakashitutor.com/api/getquizresults?quiz_id={nid}").json()
 
